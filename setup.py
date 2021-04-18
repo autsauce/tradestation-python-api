@@ -40,7 +40,7 @@ setup(
     keywords='finance, tradestation, api, trading',
 
     # here are the packages I want "build."
-    packages=find_packages(include=['ts'], exclude=['config.py']),
+    packages=['ts'],
 
     # I also have some package data, like photos and JSON files, so I want to include those too.
     include_package_data=True,
