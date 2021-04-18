@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 setup(
 
     # this will be my Library name.
-    name='tradestation-python-api',
+    name='tradestation_python_api',
 
     # Want to make sure people know who made it.
     author='Alex Reed',
@@ -68,6 +68,6 @@ setup(
     ],
 
     # you will need python 3.7 to use this libary.
-    python_requires='>=3.8'
+    python_requires='>=3.7.10'
 
 )
