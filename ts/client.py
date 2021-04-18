@@ -747,6 +747,46 @@ class TradeStationClient():
 
         else:
             raise ValueError("Account Keys, must be a list object")
+            
+    def get_positions(self, account_keys: List[str]) -> dict:
+
+        if isinstance(account_keys, list):
+
+            # validate the token.
+            self._token_validation()
+
+            # argument validation, account keys.
+            if len(account_keys) == 0:
+                raise ValueError(
+                    "You cannot pass through an empty list for account keys.")
+            elif len(account_keys) > 0 and len(account_keys) <= 25:
+                account_keys = ','.join(account_keys)
+            elif len(account_keys) > 25:
+                raise ValueError(
+                    "You cannot pass through more than 25 account keys.")
+
+            params = {
+                'access_token': self.state['access_token']
+            }
+
+            # define the endpoint.
+            url_endpoint = self._api_endpoint(
+                url='accounts/{account_numbers}/positions'.format(
+                    account_numbers=account_keys
+                )
+            )
+
+            # grab the response.
+            response = self._handle_requests(
+                url=url_endpoint,
+                method='get',
+                args=params
+            )
+
+            return response
+
+        else:
+            raise ValueError("Account Keys, must be a list object")
 
     def account_orders(self, account_keys: List[str], since: int, page_size: int, page_number: int = 0) -> dict:
         """Grab all the account orders for a list of accounts.
