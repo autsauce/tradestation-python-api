@@ -68,6 +68,6 @@ setup(
     ],
 
     # you will need python 3.7 to use this libary.
-    python_requires='>=3.7.10'
+    python_requires='==3.7.10'
 
 )
