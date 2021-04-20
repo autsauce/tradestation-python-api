@@ -4,6 +4,7 @@ import json
 
 import requests
 import urllib.parse
+import pandas as pd
 
 from typing import List
 from typing import Dict
@@ -728,46 +729,6 @@ class TradeStationClient():
                 params = {
                     'access_token': self.state['access_token']
                 }
-
-            # define the endpoint.
-            url_endpoint = self._api_endpoint(
-                url='accounts/{account_numbers}/positions'.format(
-                    account_numbers=account_keys
-                )
-            )
-
-            # grab the response.
-            response = self._handle_requests(
-                url=url_endpoint,
-                method='get',
-                args=params
-            )
-
-            return response
-
-        else:
-            raise ValueError("Account Keys, must be a list object")
-            
-    def get_positions(self, account_keys: List[str]) -> dict:
-
-        if isinstance(account_keys, list):
-
-            # validate the token.
-            self._token_validation()
-
-            # argument validation, account keys.
-            if len(account_keys) == 0:
-                raise ValueError(
-                    "You cannot pass through an empty list for account keys.")
-            elif len(account_keys) > 0 and len(account_keys) <= 25:
-                account_keys = ','.join(account_keys)
-            elif len(account_keys) > 25:
-                raise ValueError(
-                    "You cannot pass through more than 25 account keys.")
-
-            params = {
-                'access_token': self.state['access_token']
-            }
 
             # define the endpoint.
             url_endpoint = self._api_endpoint(
@@ -1745,3 +1706,68 @@ class TradeStationClient():
         )
 
         return response
+    
+    def get_positions_info(self, account_keys: List[str]) -> dict:
+
+        if isinstance(account_keys, list):
+
+            # validate the token.
+            self._token_validation()
+
+            # argument validation, account keys.
+            if len(account_keys) == 0:
+                raise ValueError(
+                    "You cannot pass through an empty list for account keys.")
+            elif len(account_keys) > 0 and len(account_keys) <= 25:
+                account_keys = ','.join(account_keys)
+            elif len(account_keys) > 25:
+                raise ValueError(
+                    "You cannot pass through more than 25 account keys.")
+
+            params = {
+                'access_token': self.state['access_token']
+            }
+
+            # define the endpoint.
+            url_endpoint = self._api_endpoint(
+                url='accounts/{account_numbers}/positions'.format(
+                    account_numbers=account_keys
+                )
+            )
+
+            # grab the response.
+            response = self._handle_requests(
+                url=url_endpoint,
+                method='get',
+                args=params
+            )
+
+            return response
+
+        else:
+            raise ValueError("Account Keys, must be a list object")
+            
+    def get_quote(symbol):
+
+        ask = quotes([symbol])[0]['Ask']
+
+        return ask
+    
+    def get_account_balance(key):
+
+        balance = account_balances([key])[0]['RealTimeEquity']
+
+        return balance
+    
+    def get_positions(key):
+
+      positions = get_positions_info([key])
+      positions = pd.DataFrame(positions)[['Symbol','Quantity','MarketValue']].set_index('Symbol')
+
+      return positions
+
+    def get_account_key(username):
+
+       key = str(user_accounts(username)[0]['Key'])
+
+       return key
