@@ -38,7 +38,7 @@ The following requirements must be met to use this API:
 - A TradeStation account, you'll need your account password and account number to use the API.
 - A TradeStation Developer API Key
 - A Redirect URI, sometimes called Redirect URL
-- Python 3.8 or later.
+- Python 3.7.10 or later.
 
 ## API Key and Credentials
 
@@ -51,7 +51,7 @@ Additionally, to authenticate yourself using this library, you will need to prov
 ## Installation
 
 ```bash
-pip install -e .
+pip install --upgrade git+https://github.com/autsauce/tradestation-python-api.git
 ```
 
 ## Usage
@@ -102,14 +102,3 @@ For certain requests, in a limited fashion, it will help validate your request w
 - [Overview](https://tradestation.github.io/api-docs/#section/Overview)
 - [Paper Trading](https://tradestation.github.io/api-docs/#section/Overview/SIM-vs-LIVE)
 - [Authentication](https://tradestation.github.io/api-docs/#section/Authentication)
-
-## Support these Projects
-
-**Patreon:**
-Help support this project and future projects by donating to my [Patreon Page](https://www.patreon.com/sigmacoding). I'm always looking to add more content for individuals like yourself, unfortuantely some of the APIs I would require me to pay monthly fees.
-
-**YouTube:**
-If you'd like to watch more of my content, feel free to visit my YouTube channel [Sigma Coding](https://www.youtube.com/c/SigmaCoding).
-
-**Hire Me:**
-If you have a project, you think I can help you with feel free to reach out at coding.sigma@gmail.com
