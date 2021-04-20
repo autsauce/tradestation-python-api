@@ -1749,25 +1749,25 @@ class TradeStationClient():
             
     def get_quote(self,symbol):
 
-        ask = quotes([symbol])[0]['Ask']
+        ask = self.quotes([symbol])[0]['Ask']
 
         return ask
     
     def get_account_balance(self,key):
 
-        balance = account_balances([key])[0]['RealTimeEquity']
+        balance = self.account_balances([key])[0]['RealTimeEquity']
 
         return balance
     
     def get_positions(self,key):
 
-      positions = get_positions_info([key])
+      positions = self.get_positions_info([key])
       positions = pd.DataFrame(positions)[['Symbol','Quantity','MarketValue']].set_index('Symbol')
 
       return positions
 
     def get_account_key(self,username):
 
-       key = str(user_accounts(username)[0]['Key'])
+       key = str(self.user_accounts(username)[0]['Key'])
 
        return key
