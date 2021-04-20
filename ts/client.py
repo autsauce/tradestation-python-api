@@ -1747,26 +1747,26 @@ class TradeStationClient():
         else:
             raise ValueError("Account Keys, must be a list object")
             
-    def get_quote(symbol):
+    def get_quote(self,symbol):
 
         ask = quotes([symbol])[0]['Ask']
 
         return ask
     
-    def get_account_balance(key):
+    def get_account_balance(self,key):
 
         balance = account_balances([key])[0]['RealTimeEquity']
 
         return balance
     
-    def get_positions(key):
+    def get_positions(self,key):
 
       positions = get_positions_info([key])
       positions = pd.DataFrame(positions)[['Symbol','Quantity','MarketValue']].set_index('Symbol')
 
       return positions
 
-    def get_account_key(username):
+    def get_account_key(self,username):
 
        key = str(user_accounts(username)[0]['Key'])
 
