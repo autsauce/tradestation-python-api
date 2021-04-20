@@ -33,7 +33,8 @@ setup(
     # there are some dependencies to use the library, so let's list them out.
     install_requires=[
         'requests',
-        'python-dateutil'
+        'python-dateutil',
+        'pandas'
     ],
 
     # some keywords for my library.
