@@ -1766,8 +1766,9 @@ class TradeStationClient():
 
       return positions
 
-    def get_account_key(self,username):
-
-       key = str(self.user_accounts(username)[0]['Key'])
+    def get_account_key(self,username,number):
+        
+       data = self.user_accounts(username)
+       key = str([x['Key'] for x in data if x['Name'] == number][0])
 
        return key
