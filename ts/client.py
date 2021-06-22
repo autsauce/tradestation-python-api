@@ -1772,6 +1772,13 @@ class TradeStationClient():
        transfer = self.account_balances([key])[0]['UnsettledFund']
 
        return transfer
+    
+    def get_account_numbers(self,username):
+        
+        data = ts.user_accounts(username)
+        accounts = [x['Name'] for x in data]
+        
+        return accounts
 
     def get_account_key(self,username,number):
         
