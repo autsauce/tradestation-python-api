@@ -1775,7 +1775,7 @@ class TradeStationClient():
     
     def get_account_numbers(self,username):
         
-        data = ts.user_accounts(username)
+        data = self.user_accounts(username)
         accounts = [x['Name'] for x in data]
         
         return accounts
