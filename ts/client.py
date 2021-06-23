@@ -1765,7 +1765,7 @@ class TradeStationClient():
       if len(positions) > 0:
         positions = pd.DataFrame(positions)[['Symbol','Quantity','MarketValue']].set_index('Symbol')
       else:
-        pass
+        positions = pd.DataFrame([],columns=['Symbol','Quantity','MarketValue']).set_index('Symbol')
 
       return positions
 
