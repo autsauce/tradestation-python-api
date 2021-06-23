@@ -1762,7 +1762,10 @@ class TradeStationClient():
     def get_positions(self,key):
 
       positions = self.get_positions_info([key])
-      positions = pd.DataFrame(positions)[['Symbol','Quantity','MarketValue']].set_index('Symbol')
+      if len(positions) > 0:
+        positions = pd.DataFrame(positions)[['Symbol','Quantity','MarketValue']].set_index('Symbol')
+      else:
+        pass
 
       return positions
 
